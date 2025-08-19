@@ -27,7 +27,7 @@ Follow these steps to run the project locally:
 2. Install Dependencies
    npm install
 3. Set up environment variables (create a .env file in the root):
-   MONGO_URI=
+   MONGO_URI="mongodb://127.0.0.1:27017/quizapp"
    PORT=3000
 4. Start Server
    node server.js
