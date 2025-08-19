@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -5,7 +7,7 @@ const path = require('path');
 const Question = require('./question');
 
 const app = express();
-const PORT = 3000;
+
 
 // Middleware
 app.use(cors());
@@ -15,10 +17,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/quizapp', {
+const PORT = process.env.PORT || 3000;
+
+mongoose.connect(process.env.MONGO_URI, {
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
 });
+
 
 // Connection event handlers
 mongoose.connection.on('connected', () => {
