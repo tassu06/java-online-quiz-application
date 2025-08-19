@@ -1,0 +1,78 @@
+/* General body styling */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('bio.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #333;
+}
+
+/* Container box styling */
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Realistic depth effect */
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading styling */
+.content h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+/* Paragraph styling */
+ /* Ensure text is styled properly */
+.content p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #555; /* Use a clear, visible color */
+    margin-bottom: 30px;
+    line-height: 1.5;
+    text-align: center; /* Center-align the text */
+}
+
+
+/* Button styling */
+.content .login {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(233, 233, 236);
+    background: linear-gradient(45deg, #8e44ad, #3498db); /* Smooth gradient */
+    border: none;
+    border-radius: 25px; /* Smooth rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Add slight depth */
+}
+
+/* Button hover effect */
+.content .login:hover {
+    background: linear-gradient(45deg, #3498db, #8e44ad); /* Reverse gradient */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px); /* Subtle lift */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

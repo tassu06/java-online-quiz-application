@@ -1,0 +1,88 @@
+/* General page setup */
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background: url('bio.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+/* The main box holding the quiz */
+.quiz-container {
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Styling for the question text */
+.question p {
+    font-size: 1.25em;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* --- MCQ Option Styling --- */
+
+/* Hide the ugly default radio button */
+.question input[type="radio"] {
+    display: none;
+}
+
+/* Style the labels to look like clickable buttons */
+.question label {
+    display: block;
+    padding: 15px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: #fafafa;
+}
+
+/* Style for when hovering over an option */
+.question label:hover {
+    border-color: #4285F4; /* Google Blue */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for when an option is selected */
+.question input[type="radio"]:checked + label {
+    background: linear-gradient(45deg, #e8f0fe, #d2e3fc);
+    border-color: #4285F4;
+    color: #1967d2;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- Submit Button Styling --- */
+
+#quiz-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(45deg, #FBBC05, #EA4335); /* Google Yellow to Red */
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#quiz-form button[type="submit"]:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+}

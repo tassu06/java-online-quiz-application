@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology Quiz</title>
+    <link rel="stylesheet" href="quizqns.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1 id="quiz-header">Loading Quiz...</h1>
+        <form id="quiz-form"></form>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const quizForm = document.getElementById('quiz-form');
+        const quizHeader = document.getElementById('quiz-header');
+        const quizContainer = document.querySelector('.quiz-container');
+
+        // Get chapter info from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const chapterNumber = urlParams.get('chapter');
+        const chapterName = urlParams.get('name');
+
+        // This is the single, correct function to load the quiz
+        async function loadQuiz() {
+            if (!chapterNumber) {
+                quizHeader.textContent = 'Chapter not specified!';
+                return;
+            }
+            
+            quizHeader.textContent = `Chapter ${chapterNumber}: ${chapterName || 'Quiz'}`;
+            
+            try {
+                const response = await fetch(`/api/questions/${chapterNumber}`);
+                const questions = await response.json();
+                
+                if (!response.ok || questions.length === 0) {
+                    quizForm.innerHTML = '<p>No questions found for this chapter.</p>';
+                    return;
+                }
+                displayQuestions(questions);
+            } catch (error) {
+                console.error('Failed to fetch:', error);
+                quizForm.innerHTML = '<p>Error loading questions.</p>';
+            }
+        }
+        
+        function displayQuestions(questions) {
+            questions.forEach((q, index) => {
+                const questionBlock = document.createElement('div');
+                questionBlock.className = 'question';
+
+                let optionsHTML = '';
+                q.options.forEach(optionText => {
+                    const optionId = `q${index}_${optionText.replace(/\s+/g, '')}`;
+                    optionsHTML += `
+                        <input type="radio" id="${optionId}" name="question_${index}" value="${optionText}">
+                        <label for="${optionId}">${optionText}</label><br>
+                    `;
+                });
+
+                questionBlock.innerHTML = `<p>${index + 1}. ${q.question}</p>${optionsHTML}`;
+                quizForm.appendChild(questionBlock);
+            });
+
+            const submitButton = document.createElement('button');
+            submitButton.type = 'submit';
+            submitButton.textContent = 'Submit Quiz';
+            quizForm.appendChild(submitButton);
+
+            quizForm.addEventListener('submit', handleSubmission);
+        }
+
+        function handleSubmission(event) {
+            event.preventDefault(); 
+            const userAnswers = {};
+            const questionsFromDOM = document.querySelectorAll('.question');
+            
+            questionsFromDOM.forEach((questionBlock, index) => {
+                const selectedOption = questionBlock.querySelector(`input[name="question_${index}"]:checked`);
+                if (selectedOption) {
+                    const questionText = questionBlock.querySelector('p').textContent.split('. ')[1];
+                    userAnswers[questionText] = selectedOption.value;
+                }
+            });
+            
+            submitAnswersToServer(userAnswers);
+        }
+
+        async function submitAnswersToServer(answers) {
+            try {
+                const response = await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chapter: chapterNumber, answers: answers }),
+                });
+                const result = await response.json();
+                
+                quizContainer.innerHTML = `
+                    <h1>Quiz Result</h1>
+                    <h2>You scored ${result.score} out of ${result.total}</h2>
+                    <p>${result.feedback}</p>
+                    <a href="/biology_lessons.html">Try another quiz</a>
+                `;
+            } catch (error) {
+                console.error('Error submitting answers:', error);
+            }
+        }
+
+        // This line at the end starts everything
+        loadQuiz();
+    });
+</script>
+    
+</body>
+</html>

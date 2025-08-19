@@ -1,0 +1,157 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url("C:/Users/Tasmiya/Downloads/bio.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #ffffff;
+}
+
+/* Container for the Form */
+.container {
+    background: rgba(255, 255, 255, 0.9); /* Transparent white */
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Depth effect */
+    animation: fadeIn 1s ease-in-out;
+    text-align: center; /* Center content alignment */
+}
+
+/* Form Heading */
+.head h1 {
+    text-align: center;
+    color: #3498db; /* Calming blue */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    text-align: left; /* Align labels and inputs */
+    margin: 0 auto;
+}
+
+/* Label Styling */
+form label {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Input Fields */
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-size: 14px;
+    color: #202020;
+    background-color: #f9f9f9; /* Subtle background for inputs */
+}
+
+/* Placeholder Text */
+form input::placeholder {
+    color: #616060;
+    font-size: 14px;
+}
+
+/* Input Focus Effects */
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #4285f4; /* Google blue */
+    outline: none;
+    box-shadow: 0px 0px 6px rgba(66, 133, 244, 0.4); /* Glowing effect */
+}
+
+/* Submit Button */
+form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff; /* White text */
+    background: linear-gradient(45deg, #8e44ad, #3498db); /* Smooth gradient */
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Subtle depth */
+}
+
+/* Submit Button Hover Effect */
+form button:hover {
+    background: linear-gradient(45deg, #3498db, #8e44ad); /* Reverse gradient */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Google Login Section */
+.google-login {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Google Login Button */
+.google-login button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #fff; /* White text */
+    font-weight: 500;
+    background: linear-gradient(45deg, #db4437, #f4b400); /* Google brand colors */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Subtle depth */
+}
+
+/* Google Login Button Hover Effect */
+.google-login button:hover {
+    background: linear-gradient(45deg, #f4b400, #db4437); /* Reverse gsradient */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Google Login Text */
+.google-login p {
+    color: #ffffff; /* Neutral text color */
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%; /* Adjust for smaller screens */
+    }
+    form button,
+    .google-login button {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
